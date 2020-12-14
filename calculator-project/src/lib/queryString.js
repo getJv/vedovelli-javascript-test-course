@@ -1,8 +1,19 @@
-module.exports.queryString = (obj) => {
-    const queryParams = Object.entries(obj).map(item => {
-        return `${item[0]}=${item[1]}`
-    })
+const keyValueToSrtring = ([key, value]) => {
+  if (typeof value === 'object' && !Array.isArray(value)) {
+    throw new Error('Please check your params');
+  }
 
-    return queryParams.join('&')
+  return `${key}=${value}`;
+};
 
-}
+module.exports.queryString = obj => {
+  return Object.entries(obj).map(keyValueToSrtring).join('&');
+};
+
+module.exports.parse = string => {
+  return Object.fromEntries(
+    string.split('&').map(item => {
+      return item.split('=');
+    }),
+  );
+};

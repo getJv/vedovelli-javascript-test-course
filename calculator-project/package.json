@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "clear && jest",
-    "test-watch": "clear && jest --watchAll"
+    "test:watch": "clear && jest --watchAll"
   },
   "keywords": [],
   "author": "",
