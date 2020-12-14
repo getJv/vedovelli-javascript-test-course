@@ -35,4 +35,17 @@ describe('query string to Object ', () => {
       profession: 'developer',
     });
   });
+  it('it shoud convert a queryString with a single key-pair to an object', () => {
+    const qs = 'name=Jhonatan';
+    expect(parse(qs)).toEqual({
+      name: 'Jhonatan',
+    });
+  });
+  it('it shoud convert a queryString with a key-pair with multiple values to an object', () => {
+    const qs = 'name=Jhonatan&abilities=js,css';
+    expect(parse(qs)).toEqual({
+      name: 'Jhonatan',
+      abilities: ['js', 'css'],
+    });
+  });
 });
