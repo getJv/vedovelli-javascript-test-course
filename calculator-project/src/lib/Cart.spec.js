@@ -17,7 +17,7 @@ describe('Cart', () => {
   });
 
   describe('getTotal()', () => {
-    fit('should return 0 when getTotal() is executed in a newly created instance', () => {
+    it('should return 0 when getTotal() is executed in a newly created instance', () => {
       expect(cart.getTotal().getAmount()).toEqual(0);
     });
     it('should multiply quantity and price and receive the total amount', () => {
@@ -90,7 +90,33 @@ describe('Cart', () => {
       cart.checkout();
       expect(cart.getTotal().getAmount()).toEqual(0);
     });
-    it('', () => {});
-    it('', () => {});
+  });
+
+  describe('Special conditions', () => {
+    it('should apply percentage discount when buy more then min itens', () => {
+      const condition = {
+        percentage: 30,
+        minimum: 2,
+      };
+      cart.add({
+        product,
+        condition,
+        quantity: 3,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(74315);
+    });
+    it('should apply percentage discount for even quantities', () => {
+      const condition = {
+        quantity: 2,
+      };
+      cart.add({
+        product,
+        condition,
+        quantity: 4,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(70776);
+    });
   });
 });
