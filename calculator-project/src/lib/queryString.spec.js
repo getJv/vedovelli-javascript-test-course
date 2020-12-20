@@ -1,4 +1,4 @@
-const { queryString, parse } = require('./queryString');
+import { queryString, parse } from './queryString';
 
 describe('Object to query string', () => {
   it('should created a valid queryString from a object', () => {
@@ -33,6 +33,19 @@ describe('query string to Object ', () => {
     expect(parse(qs)).toEqual({
       name: 'Jhonatan',
       profession: 'developer',
+    });
+  });
+  it('it shoud convert a queryString with a single key-pair to an object', () => {
+    const qs = 'name=Jhonatan';
+    expect(parse(qs)).toEqual({
+      name: 'Jhonatan',
+    });
+  });
+  it('it shoud convert a queryString with a key-pair with multiple values to an object', () => {
+    const qs = 'name=Jhonatan&abilities=js,css';
+    expect(parse(qs)).toEqual({
+      name: 'Jhonatan',
+      abilities: ['js', 'css'],
     });
   });
 });
