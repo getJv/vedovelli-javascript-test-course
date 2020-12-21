@@ -171,5 +171,21 @@ describe('Cart', () => {
 
       expect(cart.getTotal().getAmount()).toEqual(106164);
     });
+    it('should receive one or more discount and choose the better one - secont case ', () => {
+      const condition1 = {
+        percentage: 80, //80%
+        minimum: 2,
+      };
+      const condition2 = {
+        quantity: 2, //40%
+      };
+      cart.add({
+        product,
+        condition: [condition1, condition2],
+        quantity: 5,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(35388);
+    });
   });
 });
