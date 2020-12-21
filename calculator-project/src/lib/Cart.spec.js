@@ -91,7 +91,7 @@ describe('Cart', () => {
         product: product2,
         quantity: 3,
       });
-      expect(cart.summary().formated).toEqual('R$3,025.56');
+      expect(cart.summary().formatted).toEqual('R$3,025.56');
     });
     it('should reset the cart when checkout is called', () => {
       cart.add({
