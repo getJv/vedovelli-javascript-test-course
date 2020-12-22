@@ -3,4 +3,4 @@ module.export = {
     removeDeprecatedGaputilities: true,
     purgeLayersByDefault: true,
   },
-}
+};
