@@ -97,7 +97,7 @@
         </nav>
       </div>
     </header>
-    <cart :isOpen.sync="isCartOpen" />
+    <cart :is-open.sync="isCartOpen" />
     <nuxt />
     <footer class="bg-gray-200">
       <div
