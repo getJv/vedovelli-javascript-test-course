@@ -63,4 +63,12 @@ describe('Cart', () => {
     await button.trigger('click');
     expect(quantity.text()).toContain('0');
   });
+  it('should quantity not go to bellow zero', async () => {
+    const { wrapper } = mountCartItem();
+    const quantity = wrapper.find('[data-testid="quantity"]');
+    const button = wrapper.find('[data-testid="-"]');
+    await button.trigger('click');
+    await button.trigger('click');
+    expect(quantity.text()).toContain('0');
+  });
 });

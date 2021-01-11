@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import ProductCard from '@/components/ProductCard';
+import { cartState } from '@/state';
 import { makeServer } from '@/miragejs/server';
 
 const mountProductCard = () => {
@@ -35,12 +36,25 @@ describe('ProductCard - Unit', () => {
     expect(wrapper.text()).toContain('22.00');
   });
 
-  it('Should emmit addToCart Event when clicked on the button', async () => {
+  /* it('Should emmit addToCart Event when clicked on the button', async () => {
     const { wrapper, product } = mountProductCard();
     await wrapper.find('button').trigger('click');
 
     expect(wrapper.emitted().addToCart).toBeTruthy();
     expect(wrapper.emitted().addToCart.length).toBe(1);
     expect(wrapper.emitted().addToCart[0]).toEqual([{ product }]);
+  }); */
+  it('Should add item to cart on button link', async () => {
+    const { wrapper } = mountProductCard();
+    await wrapper.find('button').trigger('click');
+
+    expect(cartState.items).toHaveLength(1);
   });
+  /* it('Should ensure not to add item to cart twice', async () => {
+    const { wrapper } = mountProductCard();
+    await wrapper.find('button').trigger('click');
+    await wrapper.find('button').trigger('click');
+
+    expect(cartState.items).toHaveLength(1);
+  }); */
 });
